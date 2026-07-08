@@ -1,10 +1,10 @@
 const profile = {
   // Update this object if contact details change.
   name: "Nombre Apellido",
-  role: "Tu cargo o profesion",
+  role: "Tu cargo o profesión",
   company: "Business Cards",
-  tagline: "Tarjeta fisica NFC con perfil digital personalizado",
-  location: "Madrid, Espana",
+  tagline: "Tarjeta física NFC con perfil digital personalizado",
+  location: "Madrid, España",
   companyPage: "../index.html#personalizar",
   linkedin: "https://www.linkedin.com/",
   vcard: "assets/business-card.vcf",
@@ -85,7 +85,7 @@ if (shareButton && navigator.share) {
     try {
       await navigator.share({
         title: `${profile.name} | ${profile.company}`,
-        text: `${profile.role} at ${profile.company}`,
+        text: `${profile.role} en ${profile.company}`,
         url: window.location.href,
       });
     } catch (error) {

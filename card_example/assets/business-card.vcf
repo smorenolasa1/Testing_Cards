@@ -3,10 +3,10 @@ VERSION:3.0
 N:Apellido;Nombre;;;
 FN:Nombre Apellido
 ORG:Business Cards
-TITLE:Tu cargo o profesion
+TITLE:Tu cargo o profesión
 EMAIL:nombre@email.com
 URL:https://www.linkedin.com/
-ADR;TYPE=WORK:;;;;Madrid;;Espana
-NOTE:Tarjeta fisica NFC con business card digital personalizada.
+ADR;TYPE=WORK:;;;;Madrid;;España
+NOTE:Tarjeta física NFC con business card digital personalizada.
 X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/
 END:VCARD

@@ -19,10 +19,10 @@ Update the profile data in `scripts/card.js`. The visible card, links and share 
 ```js
 const profile = {
   name: "Nombre Apellido",
-  role: "Tu cargo o profesion",
+  role: "Tu cargo o profesión",
   company: "Business Cards",
-  tagline: "Tarjeta fisica NFC con perfil digital personalizado",
-  location: "Madrid, Espana",
+  tagline: "Tarjeta física NFC con perfil digital personalizado",
+  location: "Madrid, España",
   linkedin: "https://www.linkedin.com/",
 };
 ```

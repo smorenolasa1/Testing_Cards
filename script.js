@@ -1,7 +1,7 @@
-// Configuracion de WhatsApp
+// Configuración de WhatsApp
 const whatsappNumber = "+34 654 431 185";
 const defaultWhatsappMessage =
-  "Hola, me interesa una tarjeta fisica NFC con business card digital personalizada en Madrid por 25 euros. Quiero recibir mas informacion.";
+  "Hola, me interesa una tarjeta física NFC con business card digital personalizada en Madrid por 25 euros. Quiero recibir más información.";
 
 const whatsappBaseUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
 
@@ -76,7 +76,7 @@ function getFormState() {
   };
 }
 
-// Logica de actualizacion de la tarjeta
+// Lógica de actualización de la tarjeta
 function setPreviewCardColor(cardColor) {
   if (!previewCard) return;
   previewCard.style.background = `
@@ -113,7 +113,7 @@ function renderCardPreview({ isFinal = false } = {}) {
   const hasLocation = Boolean(state.customerLocation);
 
   if (previewLocation) {
-    previewLocation.textContent = state.customerLocation || "Madrid, Espana";
+    previewLocation.textContent = state.customerLocation || "Madrid, España";
     setElementVisibility(previewLocation, !isFinal || hasLocation);
   }
 
@@ -146,14 +146,14 @@ function buildFinalWhatsappMessage() {
   const state = getFormState();
 
   return [
-    "Hola, quiero solicitar este diseño de tarjeta fisica NFC con business card digital personalizada en Madrid por 25 euros.",
+    "Hola, quiero solicitar este diseño de tarjeta física NFC con business card digital personalizada en Madrid por 25 euros.",
     "",
     "Datos de la tarjeta:",
     `Name: ${state.customerName || "-"}`,
     `Email: ${state.customerEmail || "-"}`,
     `LinkedIn: ${state.linkedinUrl || "No indicado"}`,
     `Business name: ${state.businessName || "No indicado"}`,
-    `Ubicacion: ${state.customerLocation || "No indicado"}`,
+    `Ubicación: ${state.customerLocation || "No indicado"}`,
     `Background color: ${state.backgroundColor}`,
     `Card color: ${state.cardColor}`,
     `Name color: ${state.nameColor}`,
@@ -161,7 +161,7 @@ function buildFinalWhatsappMessage() {
     "",
     `Comentarios adicionales: ${state.additionalComments || "Sin comentarios adicionales"}`,
     "",
-    "Nota: si hay un logo o imagen subida, el navegador no puede adjuntarlo automaticamente desde este formulario estatico. El nombre del archivo queda indicado arriba y puedo enviarlo por WhatsApp despues.",
+    "Nota: si hay un logo o imagen subida, el navegador no puede adjuntarlo automáticamente desde este formulario estático. El nombre del archivo queda indicado arriba y puedo enviarlo por WhatsApp después.",
   ].join("\n");
 }
 
@@ -276,7 +276,7 @@ if (shareCardButton) {
   });
 }
 
-// Integracion con WhatsApp despues del submit
+// Integración con WhatsApp después del submit
 if (form) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();

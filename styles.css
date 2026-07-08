@@ -255,7 +255,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  margin: -28px auto 0;
+  margin: 34px auto 0;
   padding: 22px clamp(18px, 4vw, 34px);
   border: 1px solid rgba(20, 60, 90, 0.14);
   border-radius: 8px;

@@ -1,7 +1,7 @@
 // Configuración de WhatsApp
 const whatsappNumber = "+34 654 431 185";
 const defaultWhatsappMessage =
-  "Hola, me interesa una tarjeta física NFC con business card digital personalizada en Madrid por 25 euros. Quiero recibir más información.";
+  "Hola, me interesa una tarjeta física NFC personalizada. Quiero recibir más información.";
 
 const whatsappBaseUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
 
@@ -146,7 +146,7 @@ function buildFinalWhatsappMessage() {
   const state = getFormState();
 
   return [
-    "Hola, quiero solicitar este diseño de tarjeta física NFC con business card digital personalizada en Madrid por 25 euros.",
+    "Hola, quiero solicitar este diseño de tarjeta física NFC.",
     "",
     "Datos de la tarjeta:",
     `Name: ${state.customerName || "-"}`,
@@ -161,7 +161,6 @@ function buildFinalWhatsappMessage() {
     "",
     `Comentarios adicionales: ${state.additionalComments || "Sin comentarios adicionales"}`,
     "",
-    "Nota: si hay un logo o imagen subida, el navegador no puede adjuntarlo automáticamente desde este formulario estático. El nombre del archivo queda indicado arriba y puedo enviarlo por WhatsApp después.",
   ].join("\n");
 }
 

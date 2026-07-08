@@ -1,5 +1,6 @@
 // Configuracion de WhatsApp
 const whatsappNumber = "+34 654 431 185";
+const recipientEmail = "smorenolasa";
 const defaultWhatsappMessage =
   "Hola, me interesa una business card digital personalizada en Madrid por 25 euros. Quiero recibir mas informacion.";
 
@@ -7,6 +8,10 @@ const whatsappBaseUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}`;
 
 function buildWhatsappUrl(message) {
   return `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+}
+
+function buildEmailUrl({ subject, body }) {
+  return `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 document.querySelectorAll(".whatsapp-link").forEach((link) => {
@@ -19,7 +24,7 @@ document.querySelectorAll(".whatsapp-link").forEach((link) => {
 const form = document.querySelector("#cardForm");
 const finalPreview = document.querySelector("#finalPreview");
 const finalActions = document.querySelector("#finalActions");
-const finalWhatsappLink = document.querySelector("#finalWhatsappLink");
+const finalEmailLink = document.querySelector("#finalEmailLink");
 const previewLabel = document.querySelector(".preview-label");
 
 const fields = {
@@ -46,6 +51,7 @@ const previewLinkedin = document.querySelector("#previewLinkedin");
 const previewLogo = document.querySelector("#previewLogo");
 const previewEmailAction = document.querySelector("#previewEmailAction");
 const previewLinkedinAction = document.querySelector("#previewLinkedinAction");
+const shareCardButton = document.querySelector("#shareCardButton");
 
 let logoFileName = "";
 let logoObjectUrl = "";
@@ -133,11 +139,11 @@ function resetFinalPreviewState() {
   renderCardPreview({ isFinal: false });
 }
 
-function buildFinalWhatsappMessage() {
+function buildFinalEmailBody() {
   const state = getFormState();
 
   return [
-    "Hola, quiero solicitar una business card digital personalizada en Madrid por 25 euros.",
+    "Hola, quiero solicitar este diseno de business card digital personalizada en Madrid por 25 euros.",
     "",
     "Datos de la tarjeta:",
     `Name: ${state.customerName || "-"}`,
@@ -150,7 +156,21 @@ function buildFinalWhatsappMessage() {
     `Logo: ${state.logoFileName || "No adjuntado en el formulario"}`,
     "",
     `Comentarios adicionales: ${state.additionalComments || "Sin comentarios adicionales"}`,
+    "",
+    "Nota: si hay un logo o imagen subida, el navegador no puede adjuntarlo automaticamente desde este formulario estatico. El nombre del archivo queda indicado arriba.",
   ].join("\n");
+}
+
+function buildShareText() {
+  const state = getFormState();
+  return [
+    state.customerName || "Business card digital",
+    state.businessName || "",
+    state.customerEmail || "",
+    state.linkedinUrl || "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 }
 
 // Logo upload con drag and drop
@@ -228,15 +248,42 @@ Object.values(fields).forEach((field) => {
   field?.addEventListener("input", resetFinalPreviewState);
 });
 
-// Integracion con WhatsApp despues del submit
+if (shareCardButton) {
+  shareCardButton.addEventListener("click", async () => {
+    const shareText = buildShareText();
+
+    if (navigator.share) {
+      await navigator.share({
+        title: getFieldValue("customerName") || "Business card digital",
+        text: shareText,
+      });
+      return;
+    }
+
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(shareText);
+      shareCardButton.textContent = "Tarjeta copiada";
+      window.setTimeout(() => {
+        shareCardButton.innerHTML = '<span class="button-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.6 13.5 6.8 4" /><path d="m15.4 6.5-6.8 4" /></svg></span>Compartir tarjeta';
+      }, 1800);
+    }
+  });
+}
+
+// Integracion con email despues del submit
 if (form) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     renderCardPreview({ isFinal: true });
 
-    if (finalWhatsappLink) {
-      finalWhatsappLink.href = buildWhatsappUrl(buildFinalWhatsappMessage());
+    const emailUrl = buildEmailUrl({
+      subject: "Nuevo diseno de business card digital",
+      body: buildFinalEmailBody(),
+    });
+
+    if (finalEmailLink) {
+      finalEmailLink.href = emailUrl;
     }
 
     if (finalActions) finalActions.hidden = false;
@@ -244,6 +291,7 @@ if (form) {
     if (previewLabel) previewLabel.textContent = "Preview final";
 
     finalPreview?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.location.href = emailUrl;
   });
 }
 

@@ -100,8 +100,8 @@
           </article>
           <article>
             <span>03</span>
-            <h3>Contactar por WhatsApp</h3>
-            <p>Ajustamos los ultimos detalles por WhatsApp y te entrego el enlace listo para usar.</p>
+            <h3>Enviar diseno</h3>
+            <p>Recibimos tus preferencias por email y te contactamos para cerrar los ultimos detalles.</p>
           </article>
         </div>
       </section>
@@ -112,7 +112,7 @@
           <p class="kicker">Personaliza tu tarjeta</p>
           <h2 id="customizer-title">Rellena tus datos y dime exactamente que quieres</h2>
           <p class="section-intro">
-            El formulario prepara un mensaje de WhatsApp con tus preferencias. Puedes incluir colores, logo, enlaces y
+            El formulario prepara un email con tus preferencias. Puedes incluir colores, logo, enlaces y
             cualquier comentario extra sobre estilo, imagenes o cambios concretos.
           </p>
         </div>
@@ -187,7 +187,7 @@
               ></textarea>
             </label>
 
-            <button class="button button-primary form-submit" type="submit">Generar preview final</button>
+            <button class="button button-primary form-submit" type="submit">Enviar Diseño</button>
           </form>
 
           <!-- Preview de tarjeta basada en card_example -->
@@ -209,17 +209,23 @@
                 <span id="previewEmailAction">Email</span>
                 <span id="previewLinkedinAction">LinkedIn</span>
               </div>
+              <button class="share-card-button" id="shareCardButton" type="button">
+                <span class="button-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.6 13.5 6.8 4" /><path d="m15.4 6.5-6.8 4" /></svg>
+                </span>
+                Compartir tarjeta
+              </button>
             </article>
             <div class="final-actions" id="finalActions" hidden>
               <div>
-                <strong>Preview final lista</strong>
-                <p>Revisa la tarjeta. Si te gusta, envia la solicitud por WhatsApp con todos los datos del formulario.</p>
+                <strong>Diseño enviado</strong>
+                <p>Nos pondremos en contacto contigo en poco.</p>
               </div>
-              <a class="button button-primary" id="finalWhatsappLink" href="#" target="_blank" rel="noopener noreferrer">
+              <a class="button button-primary" id="finalEmailLink" href="#">
                 <span class="button-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L4 20l1.1-3.7a8.5 8.5 0 1 1 15.4-4.8Z" /><path d="M9.4 8.9c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.4.5c.7 1.2 1.7 2.1 3 2.7l.5-.6c.2-.2.4-.3.7-.2l1.6.7c.3.1.4.3.4.6v.5c0 .4-.2.6-.5.8-.7.4-1.8.2-2.8-.2-2.4-1-4.2-2.8-5.1-5.1-.4-1-.6-2.1-.2-2.9Z" /></svg>
+                  <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" /><path d="m4 7 8 6 8-6" /></svg>
                 </span>
-                Contactar por WhatsApp
+                Abrir email de nuevo
               </a>
             </div>
           </aside>

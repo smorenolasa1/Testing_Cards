@@ -144,6 +144,14 @@ a {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), var(--shadow-soft);
 }
 
+.hero-showcase {
+  position: relative;
+  display: grid;
+  width: min(38vw, 440px);
+  gap: 18px;
+  justify-items: end;
+}
+
 .hero-content {
   position: relative;
   z-index: 1;
@@ -190,6 +198,7 @@ h1 {
 .hero-actions {
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
   margin-top: 34px;
 }
 
@@ -616,10 +625,80 @@ h1 {
 }
 
 .preview-card-large {
-  width: min(34vw, 430px);
-  translate: 0 18px;
-  rotate: 3deg;
+  width: min(100%, 390px);
   opacity: 0.94;
+}
+
+.hero-card-primary {
+  justify-self: start;
+  rotate: -2deg;
+}
+
+.hero-card-secondary {
+  width: min(100%, 360px);
+  justify-self: end;
+  border-color: rgba(31, 118, 110, 0.36);
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 13px),
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(31, 118, 110, 0.94), rgba(16, 34, 52, 0.96)),
+    #143c5a;
+  box-shadow: 0 34px 86px rgba(7, 20, 33, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  rotate: 2deg;
+  animation-delay: -3.5s;
+}
+
+.hero-card-secondary .card-pattern {
+  opacity: 0.11;
+  background:
+    linear-gradient(90deg, transparent 0 31px, rgba(255, 255, 255, 0.18) 32px, transparent 33px),
+    linear-gradient(transparent 0 31px, rgba(255, 255, 255, 0.12) 32px, transparent 33px);
+  background-size: 64px 64px;
+  mix-blend-mode: normal;
+}
+
+.hero-card-secondary .card-identity p,
+.hero-card-secondary .card-identity h2,
+.hero-card-secondary .card-identity span,
+.hero-card-secondary .card-identity small {
+  color: #f8fcff;
+}
+
+.hero-card-secondary .card-identity p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-card-secondary .card-actions span {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8fcff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 18px rgba(6, 17, 29, 0.12);
+}
+
+.hero-card-secondary .card-actions span:first-child {
+  background: #f8fcff;
+  color: var(--blue-deep);
+}
+
+.hero-card-secondary .card-actions-alt span {
+  flex: 1 1 calc(50% - 10px);
+}
+
+.hero-card-secondary .card-actions-alt span:first-child {
+  flex-basis: 100%;
+}
+
+.hero-card-primary .card-head {
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.hero-card-primary .logo-placeholder {
+  width: auto;
+  min-height: 0;
+  color: rgba(20, 60, 90, 0.42);
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
 }
 
 .floating-card {
@@ -770,6 +849,7 @@ h1 {
 /* Integracion y footer */
 
 .site-footer {
+  scroll-margin-top: 96px;
   justify-content: space-between;
   gap: 18px;
   padding: 28px clamp(18px, 5vw, 64px);
@@ -778,10 +858,14 @@ h1 {
   font-size: 0.92rem;
 }
 
-.site-footer a {
+.site-footer a:not(.button) {
   color: var(--blue);
   font-weight: 800;
   text-decoration: none;
+}
+
+.footer-whatsapp {
+  flex: 0 0 auto;
 }
 
 .button:focus-visible,
@@ -842,13 +926,26 @@ h1 {
     width: min(78vw, 520px);
   }
 
+  .hero-showcase {
+    width: min(100%, 430px);
+  }
+
   .hero-content {
     padding-top: 0;
   }
 
   .preview-card-large {
-    width: min(100%, 430px);
+    width: min(100%, 390px);
     rotate: 0deg;
+  }
+
+  .hero-card-primary {
+    justify-self: start;
+  }
+
+  .hero-card-secondary {
+    width: min(100%, 360px);
+    justify-self: end;
   }
 
   .process-grid,
@@ -889,6 +986,24 @@ h1 {
 
   .hero {
     padding-top: 96px;
+  }
+
+  .hero-showcase {
+    width: min(100%, 390px);
+  }
+
+  .preview-card-large,
+  .hero-card-secondary {
+    width: min(100%, 390px);
+  }
+
+  .hero-card-primary {
+    justify-self: start;
+  }
+
+  .hero-card-secondary {
+    justify-self: end;
+    rotate: 3deg;
   }
 
   h1 {

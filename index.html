@@ -38,36 +38,50 @@
     <main>
       <section class="hero" id="inicio" aria-labelledby="hero-title">
         <div class="hero-visual" aria-hidden="true">
-          <article class="floating-card preview-card preview-card-large">
-            <div class="card-pattern"></div>
-            <div class="card-identity">
-              <p>Madrid, Espana</p>
-              <h2>Nombre Apellido</h2>
-              <span>Founder &amp; Consultant</span>
-              <small>Business strategy, partnerships &amp; growth</small>
-            </div>
-            <div class="card-actions">
-              <span>Guardar contacto</span>
-              <span>LinkedIn</span>
-              <span>Web</span>
-            </div>
-          </article>
+          <div class="hero-showcase">
+            <article class="floating-card preview-card preview-card-large hero-card-primary">
+              <div class="card-pattern"></div>
+              <header class="card-head">
+                <div class="logo-placeholder">LOGO</div>
+              </header>
+              <div class="card-identity">
+                <p>Madrid, Espana</p>
+                <h2>Tu nombre</h2>
+                <span>Profesional independiente</span>
+                <small>Servicios, contacto y enlaces principales</small>
+              </div>
+              <div class="card-actions">
+                <span>Guardar contacto</span>
+                <span>LinkedIn</span>
+                <span>Web</span>
+              </div>
+            </article>
+            <article class="floating-card preview-card preview-card-large hero-card-secondary">
+              <div class="card-pattern"></div>
+              <div class="card-identity">
+                <p>Brand studio</p>
+                <h2>Tu marca</h2>
+                <span>Creative direction</span>
+                <small>Identidad visual, eventos y networking premium</small>
+              </div>
+              <div class="card-actions card-actions-alt">
+                <span>Compartir tarjeta</span>
+                <span>Email</span>
+                <span>Portfolio</span>
+                <span>Instagram</span>
+              </div>
+            </article>
+          </div>
         </div>
 
         <div class="hero-content">
-          <p class="kicker">Tarjeta fisica NFC + diseno digital</p>
-          <h1 id="hero-title">Business cards fisicas NFC personalizadas en Madrid</h1>
+          <p class="kicker">Tarjeta fisica NFC + diseño digital</p>
+          <h1 id="hero-title">Business cards NFC personalizadas en Madrid</h1>
           <p class="hero-copy">
-            Te entrego una tarjeta fisica con chip NFC y tu diseno digital incorporado. Cuando alguien acerca el movil,
-            se abre automaticamente tu business card personalizada con tus datos, enlaces y logo.
+            Se entrega una tarjeta física con chip NFC y tu diseño digital incorporado. Cuando alguien acerca el movil,
+            se abre automáticamente tu business card personalizada con tus datos, enlaces y logo.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary whatsapp-link" href="#" id="contacto">
-              <span class="button-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L4 20l1.1-3.7a8.5 8.5 0 1 1 15.4-4.8Z" /><path d="M9.4 8.9c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.4.5c.7 1.2 1.7 2.1 3 2.7l.5-.6c.2-.2.4-.3.7-.2l1.6.7c.3.1.4.3.4.6v.5c0 .4-.2.6-.5.8-.7.4-1.8.2-2.8-.2-2.4-1-4.2-2.8-5.1-5.1-.4-1-.6-2.1-.2-2.9Z" /></svg>
-              </span>
-              Contactar por WhatsApp
-            </a>
             <a class="button button-secondary" href="#personalizar">Personalizar tarjeta</a>
           </div>
         </div>
@@ -78,7 +92,7 @@
           <p>Precio fijo</p>
           <strong>25€ por tarjeta fisica NFC personalizada</strong>
         </div>
-        <a class="text-link" href="#personalizar">Pedir la mia</a>
+        <a class="text-link" href="#personalizar">Pedir la mía</a>
       </section>
 
       <section class="process-section" id="proceso" aria-labelledby="process-title">
@@ -95,7 +109,7 @@
           <article>
             <span>02</span>
             <h3>Previsualizar diseno</h3>
-            <p>Ves una muestra digital adaptada a tu marca antes de grabarla en la tarjeta fisica NFC.</p>
+            <p>Ves una muestra digital adaptada a ti.</p>
           </article>
           <article>
             <span>03</span>
@@ -187,7 +201,7 @@
                 id="additionalComments"
                 name="additionalComments"
                 rows="6"
-                placeholder="Explica cualquier informacion adicional, imagenes, estilo, cambios concretos, referencias o detalles que quieras anadir o modificar de la tarjeta. Es totalmente personalizable."
+                placeholder="Explica cualquier informacion adicional, red social, imagenes, estilo, cambios concretos, referencias o detalles que quieras anadir o modificar de la tarjeta. Es totalmente personalizable."
               ></textarea>
             </label>
 
@@ -239,9 +253,14 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="contacto">
       <span>Business cards fisicas NFC personalizadas en Madrid</span>
-      <a class="whatsapp-link" href="#">WhatsApp</a>
+      <a class="button button-primary whatsapp-link footer-whatsapp" href="#">
+        <span class="button-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L4 20l1.1-3.7a8.5 8.5 0 1 1 15.4-4.8Z" /><path d="M9.4 8.9c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.4.5c.7 1.2 1.7 2.1 3 2.7l.5-.6c.2-.2.4-.3.7-.2l1.6.7c.3.1.4.3.4.6v.5c0 .4-.2.6-.5.8-.7.4-1.8.2-2.8-.2-2.4-1-4.2-2.8-5.1-5.1-.4-1-.6-2.1-.2-2.9Z" /></svg>
+        </span>
+        Contactar por WhatsApp
+      </a>
     </footer>
 
     <script src="script.js" defer></script>

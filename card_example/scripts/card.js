@@ -1,13 +1,13 @@
 const profile = {
   // Update this object if contact details change.
-  name: "Pablo Moreno Lasa",
-  role: "Investment Banking Analyst",
-  company: "Evercore",
-  tagline: "Utilities, Infrastructure & Transport M&A",
-  location: "London, United Kingdom",
-  companyPage: "https://www.linkedin.com/company/163732/",
-  linkedin: "https://www.linkedin.com/in/pablo-moreno-lasa-924890254/",
-  vcard: "assets/pablo-moreno.vcf",
+  name: "Nombre Apellido",
+  role: "Tu cargo o profesion",
+  company: "Business Cards",
+  tagline: "Tarjeta fisica NFC con perfil digital personalizado",
+  location: "Madrid, Espana",
+  companyPage: "../index.html#personalizar",
+  linkedin: "https://www.linkedin.com/",
+  vcard: "assets/business-card.vcf",
 };
 
 const card = document.querySelector("#businessCard");

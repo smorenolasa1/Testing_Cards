@@ -1,6 +1,6 @@
-# Pablo Moreno Lasa Business Card
+# Business Cards NFC Demo
 
-Static digital business card for Pablo Moreno Lasa at Evercore, ready to publish with GitHub Pages.
+Static demo for a physical NFC card that opens a personalized digital business card on a phone.
 
 ## Files
 
@@ -9,8 +9,8 @@ Static digital business card for Pablo Moreno Lasa at Evercore, ready to publish
 - `styles/style-1.css`: saved version of Style 1.
 - `styles/style-2.css`: alternate visual direction for client review.
 - `scripts/card.js`: editable profile configuration, 3D/touch movement and Web Share API.
-- `assets/pablo-moreno.vcf`: downloadable contact card.
-- `assets/evercore-seeklogo-2.svg`: Evercore logo. Add this file before publishing.
+- `assets/business-card.vcf`: downloadable contact card.
+- `assets/business-cards-logo.svg`: Business Cards logo.
 
 ## Edit Contact Data
 
@@ -18,16 +18,16 @@ Update the profile data in `scripts/card.js`. The visible card, links and share 
 
 ```js
 const profile = {
-  name: "Pablo Moreno Lasa",
-  role: "Investment Banking Analyst",
-  company: "Evercore",
-  tagline: "Utilities, Infrastructure & Transport M&A",
-  location: "London, United Kingdom",
-  linkedin: "https://www.linkedin.com/in/pablo-moreno-lasa-924890254/",
+  name: "Nombre Apellido",
+  role: "Tu cargo o profesion",
+  company: "Business Cards",
+  tagline: "Tarjeta fisica NFC con perfil digital personalizado",
+  location: "Madrid, Espana",
+  linkedin: "https://www.linkedin.com/",
 };
 ```
 
-`assets/pablo-moreno.vcf` is included as the static contact download.
+`assets/business-card.vcf` is included as the static contact download.
 
 ## Changing The Active Style
 

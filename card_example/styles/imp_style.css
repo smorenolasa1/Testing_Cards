@@ -8,8 +8,8 @@
   --navy-950: #050b14;
   --navy-900: #071421;
   --navy-800: #102234;
-  --evercore-blue: #143c5a;
-  --evercore-gold: #a8792c;
+  --brand-blue: #143c5a;
+  --brand-gold: #a8792c;
   --steel: #8b9aa6;
   --white: #f7fbfd;
   --ink: #06111d;
@@ -234,7 +234,7 @@ body::before {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--evercore-blue);
+  color: var(--brand-blue);
   font-size: 0.68rem;
   font-weight: 650;
   letter-spacing: 0.1em;

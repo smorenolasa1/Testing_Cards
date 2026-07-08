@@ -88,17 +88,13 @@ a {
   text-decoration: none;
 }
 
-.brand-mark {
-  display: inline-grid;
+.brand-logo-mini {
+  display: block;
   width: 38px;
   height: 38px;
-  place-items: center;
-  border: 1px solid rgba(168, 121, 44, 0.4);
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--blue-deep), var(--blue));
-  color: #f8fcff;
-  font-size: 0.82rem;
-  letter-spacing: 0;
+  object-fit: contain;
+  box-shadow: 0 8px 18px rgba(16, 34, 52, 0.14);
 }
 
 .top-nav {
@@ -376,6 +372,14 @@ h1 {
   padding: clamp(18px, 3vw, 28px);
 }
 
+.preview-column {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 14px;
+  align-self: start;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -388,8 +392,7 @@ h1 {
 }
 
 .field span,
-.upload-zone strong,
-.preview-label {
+.upload-zone strong {
   color: var(--ink);
   font-size: 0.84rem;
   font-weight: 850;
@@ -521,8 +524,6 @@ h1 {
 }
 
 .form-preview {
-  position: sticky;
-  top: 96px;
   display: grid;
   gap: 14px;
   padding: 18px;
@@ -531,13 +532,6 @@ h1 {
     linear-gradient(rgba(168, 121, 44, 0.03) 1px, transparent 1px),
     var(--preview-page-bg, rgba(255, 255, 255, 0.82));
   background-size: 48px 48px, 48px 48px, auto;
-}
-
-.preview-label {
-  margin: 0;
-  color: var(--sea);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .custom-preview {
@@ -558,10 +552,6 @@ h1 {
 .form-preview.is-final {
   border-color: rgba(31, 118, 110, 0.38);
   box-shadow: 0 24px 70px rgba(7, 20, 33, 0.13);
-}
-
-.form-preview.is-final .preview-label {
-  color: var(--gold);
 }
 
 .final-actions {
@@ -676,14 +666,11 @@ h1 {
 .logo-placeholder {
   display: grid;
   width: min(100%, 320px);
-  min-height: 108px;
+  min-height: 88px;
   place-items: center;
   overflow: hidden;
-  border: 1px dashed rgba(20, 60, 90, 0.28);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.28)),
-    rgba(20, 60, 90, 0.045);
+  border: 0;
+  background: transparent;
   color: rgba(20, 60, 90, 0.62);
   font-size: clamp(1.75rem, 7vw, 3rem);
   font-weight: 850;
@@ -869,7 +856,7 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .form-preview {
+  .preview-column {
     position: static;
   }
 

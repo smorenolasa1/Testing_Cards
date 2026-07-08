@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">Business Cards</title>
+  <desc id="desc">BC logo for Business Cards</desc>
+  <rect width="220" height="220" rx="42" fill="#102234"/>
+  <text x="110" y="132" text-anchor="middle" fill="#f7fbfd" font-family="Avenir Next, Helvetica, Arial, sans-serif" font-size="76" font-weight="850" letter-spacing="2">BC</text>
+</svg>

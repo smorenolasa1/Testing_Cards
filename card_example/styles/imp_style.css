@@ -1,0 +1,479 @@
+/*
+  Style 1: current direction.
+  Keep this file and remove style-2.css plus the switcher when the client approves this option.
+*/
+
+:root {
+  color-scheme: dark;
+  --navy-950: #050b14;
+  --navy-900: #071421;
+  --navy-800: #102234;
+  --evercore-blue: #143c5a;
+  --evercore-gold: #a8792c;
+  --steel: #8b9aa6;
+  --white: #f7fbfd;
+  --ink: #06111d;
+  --ink-soft: #263341;
+  --muted: #5f6c76;
+  --card-border: rgba(168, 121, 44, 0.28);
+  --card-bg: rgba(248, 249, 248, 0.92);
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(40, 84, 118, 0.22), transparent 29rem),
+    radial-gradient(circle at 85% 80%, rgba(168, 121, 44, 0.13), transparent 25rem),
+    linear-gradient(145deg, #050b14 0%, #071421 48%, #111821 100%);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(116, 211, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 121, 44, 0.026) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+}
+
+.style-switcher {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  display: grid;
+  gap: 10px;
+  min-width: 196px;
+  padding: 12px;
+  border: 1px solid rgba(168, 121, 44, 0.24);
+  border-radius: 16px;
+  background: rgba(6, 17, 29, 0.72);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.style-switcher-label {
+  margin: 0;
+  color: rgba(247, 251, 253, 0.8);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.style-switcher-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.style-option {
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.style-option[aria-pressed="true"] {
+  border-color: rgba(168, 121, 44, 0.75);
+  background: linear-gradient(135deg, rgba(20, 60, 90, 0.95), rgba(16, 34, 52, 0.95));
+}
+
+.page-shell {
+  position: relative;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding:
+    max(18px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    max(18px, env(safe-area-inset-bottom))
+    max(18px, env(safe-area-inset-left));
+  isolation: isolate;
+}
+
+.ambient {
+  position: fixed;
+  z-index: -1;
+  width: 42vmin;
+  height: 42vmin;
+  border-radius: 999px;
+  filter: blur(48px);
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+.ambient-one {
+  top: 13%;
+  left: -12%;
+  background: rgba(54, 165, 220, 0.36);
+}
+
+.ambient-two {
+  right: -14%;
+  bottom: 8%;
+  background: rgba(168, 121, 44, 0.26);
+}
+
+.business-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --shine-x: 50%;
+  --shine-y: 18%;
+  position: relative;
+  width: min(100%, 430px);
+  padding: clamp(22px, 6vw, 34px);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  background:
+    linear-gradient(94deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 8px),
+    linear-gradient(4deg, rgba(20, 60, 90, 0.035) 0 1px, transparent 1px 10px),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 24%),
+    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.16) 0 1px, rgba(84, 93, 101, 0.035) 1px 3px),
+    linear-gradient(145deg, #fbfcfc 0%, #f0f2f2 45%, #e0e5e7 100%),
+    var(--card-bg);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(73, 103, 125, 0.12);
+  backdrop-filter: blur(18px) saturate(112%);
+  -webkit-backdrop-filter: blur(18px) saturate(112%);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 0);
+  animation: cardEnter 720ms ease-out both, floatCard 10s ease-in-out 900ms infinite;
+}
+
+.business-card::before,
+.business-card::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.business-card::before {
+  inset: -1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at var(--shine-x) var(--shine-y), rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.2) 18%, transparent 38%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.9), transparent 24%, rgba(168, 121, 44, 0.18) 68%, transparent);
+  opacity: 0.7;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1px;
+  transition: opacity 220ms ease;
+}
+
+.business-card::after {
+  display: none;
+}
+
+.card-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  background:
+    radial-gradient(circle at var(--shine-x) var(--shine-y), rgba(255, 255, 255, 0.82), transparent 24%),
+    linear-gradient(115deg, transparent 0 34%, rgba(255, 255, 255, 0.26) 44%, transparent 56%),
+    linear-gradient(90deg, transparent 0 39px, rgba(20, 60, 90, 0.045) 40px, transparent 41px),
+    linear-gradient(transparent 0 39px, rgba(168, 121, 44, 0.028) 40px, transparent 41px);
+  background-size: 80px 80px;
+  mix-blend-mode: soft-light;
+  transition: opacity 220ms ease;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 22px;
+  border: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.72), transparent 62%);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+}
+
+.brand-logo {
+  display: block;
+  width: min(100%, 430px);
+  max-height: 132px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(6, 17, 29, 0.11));
+}
+
+.metal-line {
+  display: none;
+}
+
+.identity {
+  padding: clamp(18px, 4.8vw, 26px) 0 clamp(18px, 5vw, 26px);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--evercore-blue);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #16253a;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: clamp(1.42rem, 5.8vw, 2.12rem);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.role {
+  margin: 13px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 3.8vw, 1.14rem);
+  line-height: 1.4;
+}
+
+.tagline {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.84rem, 2.9vw, 0.94rem);
+  font-weight: 520;
+  line-height: 1.35;
+}
+
+.actions {
+  display: grid;
+  gap: 12px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.action,
+.share-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(40, 91, 123, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76), 0 8px 18px rgba(38, 76, 100, 0.07);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.action-primary {
+  min-height: 54px;
+  border-color: rgba(26, 98, 143, 0.48);
+  background: linear-gradient(135deg, #102234, #143c5a);
+  color: #f8fcff;
+  box-shadow: 0 14px 34px rgba(16, 34, 52, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.action:active,
+.share-button:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.action-primary:focus:not(:focus-visible) {
+  background: linear-gradient(135deg, #102234, #143c5a);
+  box-shadow: 0 14px 34px rgba(16, 34, 52, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.action:focus-visible,
+.share-button:focus-visible,
+.style-option:focus-visible {
+  outline: 3px solid rgba(31, 111, 158, 0.34);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .action:hover,
+  .share-button:hover,
+  .style-option:hover {
+    transform: translateY(-2px);
+  }
+
+  .action:hover,
+  .share-button:hover {
+    border-color: rgba(26, 98, 143, 0.42);
+    background: rgba(232, 243, 249, 0.86);
+  }
+
+  .style-option:hover {
+    border-color: rgba(168, 121, 44, 0.5);
+  }
+}
+
+.icon {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+.share-button {
+  width: 100%;
+  margin-top: 14px;
+  color: #16344a;
+}
+
+.share-button[hidden] {
+  display: none;
+}
+
+.tap-note {
+  display: none;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 20px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@media (max-height: 720px) {
+  .business-card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .brand-logo {
+    width: min(96%, 360px);
+    max-height: 118px;
+  }
+
+  .identity {
+    padding: 18px 0 16px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .business-card {
+    width: min(92vw, 760px);
+    display: grid;
+    grid-template-columns: minmax(230px, 0.92fr) minmax(280px, 1fr);
+    gap: 20px 26px;
+    align-items: center;
+  }
+
+  .card-header,
+  .identity {
+    grid-column: 1;
+  }
+
+  .actions,
+  .share-button,
+  .tap-note {
+    grid-column: 2;
+  }
+
+  .identity {
+    padding: 0;
+  }
+
+  h1 {
+    font-size: clamp(1.45rem, 4.2vw, 2rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .identity {
+    padding: 14px 0 14px;
+  }
+
+  .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .tagline {
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+  }
+}
+
+@media (min-width: 760px) {
+  .business-card {
+    width: min(430px, 92vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .business-card {
+    --rx: 0deg !important;
+    --ry: 0deg !important;
+  }
+}

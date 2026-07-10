@@ -53,7 +53,7 @@
               <div class="card-actions">
                 <span>Guardar contacto</span>
                 <span>LinkedIn</span>
-                <span>Web</span>
+                <span>Reseñas Google</span>
               </div>
             </article>
             <article class="floating-card preview-card preview-card-large hero-card-secondary">
@@ -67,7 +67,7 @@
               <div class="card-actions card-actions-alt">
                 <span>Compartir tarjeta</span>
                 <span>Email</span>
-                <span>Portfolio</span>
+                <span>Google Maps</span>
                 <span>Instagram</span>
               </div>
             </article>
@@ -126,7 +126,7 @@
           <h2 id="customizer-title">Rellena tus datos y previsualiza el diseño de tu business card.</h2>
           <p class="section-intro">
             El formulario prepara un mensaje de WhatsApp con tus preferencias. Puedes incluir colores, logo, enlaces,
-            comentarios de estilo y cualquier detalle. El diseño final se personalizará antes de fabricar la tarjeta.
+            reseñas de Google Maps y cualquier detalle. El diseño final se personalizará antes de fabricar la tarjeta.
           </p>
           <a class="scroll-cue customizer-cue" href="#finalPreview" aria-label="Bajar para ver la previsualización">
             <span>Baja para ver la previsualización</span>
@@ -186,6 +186,11 @@
                 <span>Ubicación <em>opcional</em></span>
                 <input id="customerLocation" name="customerLocation" type="text" placeholder="Madrid, España" />
               </label>
+
+              <label class="field" for="googleMapsUrl">
+                <span>Google Maps / reseñas <em>opcional</em></span>
+                <input id="googleMapsUrl" name="googleMapsUrl" type="text" placeholder="Link a tu ficha o reseñas de Google" />
+              </label>
             </div>
 
             <div class="upload-zone" id="logoDropzone">
@@ -231,6 +236,7 @@
                   <span>Guardar contacto</span>
                   <span id="previewEmailAction">Email</span>
                   <span id="previewLinkedinAction">LinkedIn</span>
+                  <span id="previewGoogleMapsAction">Reseñas Google</span>
                 </div>
                 <button class="share-card-button" id="shareCardButton" type="button">
                   <span class="button-icon" aria-hidden="true">

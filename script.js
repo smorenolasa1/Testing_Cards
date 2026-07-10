@@ -30,6 +30,7 @@ const fields = {
   linkedinUrl: document.querySelector("#linkedinUrl"),
   businessName: document.querySelector("#businessName"),
   customerLocation: document.querySelector("#customerLocation"),
+  googleMapsUrl: document.querySelector("#googleMapsUrl"),
   additionalComments: document.querySelector("#additionalComments"),
 };
 
@@ -48,6 +49,7 @@ const previewLogoWrap = document.querySelector("#previewLogoWrap");
 const previewLogo = document.querySelector("#previewLogo");
 const previewEmailAction = document.querySelector("#previewEmailAction");
 const previewLinkedinAction = document.querySelector("#previewLinkedinAction");
+const previewGoogleMapsAction = document.querySelector("#previewGoogleMapsAction");
 const shareCardButton = document.querySelector("#shareCardButton");
 
 let logoFileName = "";
@@ -71,6 +73,7 @@ function getFormState() {
     linkedinUrl: getFieldValue("linkedinUrl"),
     businessName: getFieldValue("businessName"),
     customerLocation: getFieldValue("customerLocation"),
+    googleMapsUrl: getFieldValue("googleMapsUrl"),
     additionalComments: getFieldValue("additionalComments"),
     logoFileName,
   };
@@ -111,6 +114,7 @@ function renderCardPreview({ isFinal = false } = {}) {
   const hasBusinessName = Boolean(state.businessName);
   const hasLinkedin = Boolean(state.linkedinUrl);
   const hasLocation = Boolean(state.customerLocation);
+  const hasGoogleMaps = Boolean(state.googleMapsUrl);
 
   if (previewLocation) {
     previewLocation.textContent = state.customerLocation || "Madrid, España";
@@ -134,6 +138,10 @@ function renderCardPreview({ isFinal = false } = {}) {
   if (previewLinkedinAction) {
     setElementVisibility(previewLinkedinAction, !isFinal || hasLinkedin);
   }
+
+  if (previewGoogleMapsAction) {
+    setElementVisibility(previewGoogleMapsAction, !isFinal || hasGoogleMaps);
+  }
 }
 
 function resetFinalPreviewState() {
@@ -154,6 +162,7 @@ function buildFinalWhatsappMessage() {
     `LinkedIn: ${state.linkedinUrl || "No indicado"}`,
     `Business name: ${state.businessName || "No indicado"}`,
     `Ubicación: ${state.customerLocation || "No indicado"}`,
+    `Google Maps reviews: ${state.googleMapsUrl || "No indicado"}`,
     `Background color: ${state.backgroundColor}`,
     `Card color: ${state.cardColor}`,
     `Name color: ${state.nameColor}`,
@@ -172,6 +181,7 @@ function buildShareText() {
     state.customerLocation || "",
     state.customerEmail || "",
     state.linkedinUrl || "",
+    state.googleMapsUrl ? `Google Reviews: ${state.googleMapsUrl}` : "",
   ]
     .filter(Boolean)
     .join("\n");

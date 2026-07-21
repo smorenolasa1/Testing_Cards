@@ -846,6 +846,33 @@ h1 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76), 0 8px 18px rgba(38, 76, 100, 0.07);
 }
 
+.card-actions .maps-action {
+  gap: 7px;
+}
+
+.maps-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 2px 3px rgba(7, 20, 33, 0.12));
+}
+
+.maps-red {
+  fill: #ea4335;
+}
+
+.maps-green {
+  fill: #34a853;
+}
+
+.maps-yellow {
+  fill: #fbbc04;
+}
+
+.maps-blue {
+  fill: #4285f4;
+}
+
 .card-actions span:first-child {
   flex-basis: 100%;
   background: linear-gradient(135deg, var(--blue-deep), var(--blue));

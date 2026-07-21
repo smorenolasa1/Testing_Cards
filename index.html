@@ -17,21 +17,21 @@
       property="og:description"
       content="Tarjetas físicas con chip NFC y diseño digital personalizado: 1 tarjeta por 25€ o 2 por 30€."
     />
-    <meta property="og:image" content="assets/business-cards-logo.svg" />
-    <link rel="icon" type="image/svg+xml" href="assets/business-cards-logo.svg" />
+    <meta property="og:image" content="assets/LOGO TAP.png" />
+    <link rel="icon" type="image/png" href="assets/LOGO TAP.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Landing page -->
     <header class="site-header" aria-label="Cabecera">
       <a class="brand" href="#inicio" aria-label="Inicio">
-        <img class="brand-logo-mini" src="assets/business-cards-logo.svg" alt="" />
-        <span>Business Cards Madrid</span>
+        <img class="brand-logo-mini" src="assets/LOGO TAP.png" alt="" />
+        <span>Tap Mola Madrid</span>
       </a>
       <nav class="top-nav" aria-label="Navegación principal">
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#proceso">Proceso</a>
-        <a href="#personalizar">Formulario</a>
+        <a href="#personalizar">Pide tu tarjeta</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </header>
@@ -322,7 +322,23 @@
                   <span>Guardar contacto</span>
                   <span id="previewEmailAction">Email</span>
                   <span id="previewLinkedinAction">LinkedIn</span>
-                  <span id="previewInstagramAction">Instagram</span>
+                  <span class="social-action" id="previewInstagramAction">
+                    <svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="instagramGradient" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+                          <stop offset="0" stop-color="#ffdc80" />
+                          <stop offset="0.32" stop-color="#fcaf45" />
+                          <stop offset="0.58" stop-color="#e1306c" />
+                          <stop offset="0.82" stop-color="#833ab4" />
+                          <stop offset="1" stop-color="#405de6" />
+                        </linearGradient>
+                      </defs>
+                      <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#instagramGradient)" />
+                      <circle cx="12" cy="12" r="4.25" fill="none" stroke="#fff" stroke-width="1.8" />
+                      <circle cx="17.35" cy="6.65" r="1.15" fill="#fff" />
+                    </svg>
+                    Instagram
+                  </span>
                   <span id="previewGoogleReviewsAction">Reseñas Google</span>
                   <span class="maps-action" id="previewGoogleMapsAction">
                     <svg class="maps-icon" viewBox="0 0 24 24" aria-hidden="true">

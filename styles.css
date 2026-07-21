@@ -352,17 +352,14 @@ h1 {
 
 .nfc-story-step {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.75fr);
+  grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.55fr);
   gap: clamp(24px, 5vw, 64px);
   align-items: center;
 }
 
-.nfc-story-step:nth-child(even) .nfc-story-visual {
-  order: 2;
-}
-
 .nfc-story-visual {
   position: relative;
+  order: 2;
   margin: 0;
   overflow: hidden;
   border: 1px solid rgba(20, 60, 90, 0.14);
@@ -390,6 +387,7 @@ h1 {
 
 .nfc-story-copy {
   position: relative;
+  order: 1;
   padding-left: 22px;
   border-left: 1px solid rgba(168, 121, 44, 0.42);
 }
@@ -1239,10 +1237,6 @@ h1 {
   .nfc-story-step {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .nfc-story-step:nth-child(even) .nfc-story-visual {
-    order: initial;
   }
 
   .nfc-story-visual {

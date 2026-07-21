@@ -225,8 +225,8 @@
           <p class="kicker">Personaliza tu tarjeta</p>
           <h2 id="customizer-title">Rellena tus datos y previsualiza el diseño de tu business card.</h2>
           <p class="section-intro">
-            El formulario prepara un mensaje de WhatsApp con tus preferencias. Puedes incluir colores, logo, enlaces,
-            reseñas de Google Maps y cualquier detalle. El diseño final se personalizará antes de fabricar la tarjeta.
+            El formulario prepara un mensaje de WhatsApp con tus preferencias. Puedes incluir logo, Instagram, enlaces,
+            Google Maps, reseñas de Google y cualquier detalle. El diseño final se personalizará antes de fabricar la tarjeta.
           </p>
           <a class="scroll-cue customizer-cue" href="#finalPreview" aria-label="Bajar para ver la previsualización">
             <span>Baja para ver la previsualización</span>
@@ -238,33 +238,9 @@
           <!-- Formulario -->
           <form class="custom-form" id="cardForm" aria-label="Formulario de personalización de business card">
             <div class="form-grid">
-              <label class="field color-field" for="backgroundColor">
-                <span>Background color</span>
-                <span class="color-control">
-                  <input id="backgroundColor" name="backgroundColor" type="color" value="#f7f9fb" />
-                  <input class="color-text" data-color-text="backgroundColor" type="text" value="#f7f9fb" aria-label="Background color hex" />
-                </span>
-              </label>
-
-              <label class="field color-field" for="cardColor">
-                <span>Card color</span>
-                <span class="color-control">
-                  <input id="cardColor" name="cardColor" type="color" value="#f2f4f5" />
-                  <input class="color-text" data-color-text="cardColor" type="text" value="#f2f4f5" aria-label="Card color hex" />
-                </span>
-              </label>
-
               <label class="field" for="customerName">
                 <span>Name</span>
                 <input id="customerName" name="customerName" type="text" placeholder="Tu nombre" required />
-              </label>
-
-              <label class="field color-field" for="nameColor">
-                <span>Name color</span>
-                <span class="color-control">
-                  <input id="nameColor" name="nameColor" type="color" value="#16253a" />
-                  <input class="color-text" data-color-text="nameColor" type="text" value="#16253a" aria-label="Name color hex" />
-                </span>
               </label>
 
               <label class="field" for="customerEmail">
@@ -275,6 +251,11 @@
               <label class="field" for="linkedinUrl">
                 <span>LinkedIn <em>opcional</em></span>
                 <input id="linkedinUrl" name="linkedinUrl" type="text" placeholder="https://linkedin.com/in/..." />
+              </label>
+
+              <label class="field" for="instagramUrl">
+                <span>Instagram <em>opcional</em></span>
+                <input id="instagramUrl" name="instagramUrl" type="text" placeholder="https://instagram.com/..." />
               </label>
 
               <label class="field" for="businessName">
@@ -288,8 +269,13 @@
               </label>
 
               <label class="field" for="googleMapsUrl">
-                <span>Google Maps / reseñas <em>opcional</em></span>
-                <input id="googleMapsUrl" name="googleMapsUrl" type="text" placeholder="Link a tu ficha o reseñas de Google" />
+                <span>Google Maps <em>opcional</em></span>
+                <input id="googleMapsUrl" name="googleMapsUrl" type="text" placeholder="Link a tu ubicación en Google Maps" />
+              </label>
+
+              <label class="field" for="googleReviewsUrl">
+                <span>Reseñas de Google <em>opcional</em></span>
+                <input id="googleReviewsUrl" name="googleReviewsUrl" type="text" placeholder="Link directo para ver o dejar una reseña" />
               </label>
             </div>
 
@@ -336,6 +322,8 @@
                   <span>Guardar contacto</span>
                   <span id="previewEmailAction">Email</span>
                   <span id="previewLinkedinAction">LinkedIn</span>
+                  <span id="previewInstagramAction">Instagram</span>
+                  <span id="previewGoogleReviewsAction">Reseñas Google</span>
                   <span class="maps-action" id="previewGoogleMapsAction">
                     <svg class="maps-icon" viewBox="0 0 24 24" aria-hidden="true">
                       <path class="maps-red" d="M12 2.8a7 7 0 0 1 7 7c0 5.2-7 11.4-7 11.4S5 15 5 9.8a7 7 0 0 1 7-7Z" />
@@ -343,7 +331,7 @@
                       <path class="maps-yellow" d="M5.8 6.6c-.5.9-.8 2-.8 3.2 0 5.2 7 11.4 7 11.4L5.8 6.6Z" />
                       <circle class="maps-blue" cx="12" cy="9.8" r="2.45" />
                     </svg>
-                    Reseñas Google
+                    Google Maps
                   </span>
                 </div>
                 <button class="share-card-button" id="shareCardButton" type="button">

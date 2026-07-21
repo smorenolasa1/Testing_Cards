@@ -22,15 +22,14 @@ const finalActions = document.querySelector("#finalActions");
 const finalWhatsappLink = document.querySelector("#finalWhatsappLink");
 
 const fields = {
-  backgroundColor: document.querySelector("#backgroundColor"),
-  cardColor: document.querySelector("#cardColor"),
   customerName: document.querySelector("#customerName"),
-  nameColor: document.querySelector("#nameColor"),
   customerEmail: document.querySelector("#customerEmail"),
   linkedinUrl: document.querySelector("#linkedinUrl"),
+  instagramUrl: document.querySelector("#instagramUrl"),
   businessName: document.querySelector("#businessName"),
   customerLocation: document.querySelector("#customerLocation"),
   googleMapsUrl: document.querySelector("#googleMapsUrl"),
+  googleReviewsUrl: document.querySelector("#googleReviewsUrl"),
   additionalComments: document.querySelector("#additionalComments"),
 };
 
@@ -39,7 +38,6 @@ const logoDropzone = document.querySelector("#logoDropzone");
 const logoStatus = document.querySelector("#logoStatus");
 
 // Referencias de la preview basada en card_example
-const previewCard = document.querySelector("#customPreview");
 const previewName = document.querySelector("#previewName");
 const previewEmail = document.querySelector("#previewEmail");
 const previewBusiness = document.querySelector("#previewBusiness");
@@ -49,7 +47,9 @@ const previewLogoWrap = document.querySelector("#previewLogoWrap");
 const previewLogo = document.querySelector("#previewLogo");
 const previewEmailAction = document.querySelector("#previewEmailAction");
 const previewLinkedinAction = document.querySelector("#previewLinkedinAction");
+const previewInstagramAction = document.querySelector("#previewInstagramAction");
 const previewGoogleMapsAction = document.querySelector("#previewGoogleMapsAction");
+const previewGoogleReviewsAction = document.querySelector("#previewGoogleReviewsAction");
 const shareCardButton = document.querySelector("#shareCardButton");
 
 let logoFileName = "";
@@ -59,36 +59,19 @@ function getFieldValue(fieldName) {
   return fields[fieldName]?.value.trim() || "";
 }
 
-function normalizeHex(value, fallback) {
-  return /^#[0-9A-Fa-f]{6}$/.test(value) ? value.toUpperCase() : fallback;
-}
-
 function getFormState() {
   return {
-    backgroundColor: normalizeHex(getFieldValue("backgroundColor"), "#F7F9FB"),
-    cardColor: normalizeHex(getFieldValue("cardColor"), "#F2F4F5"),
     customerName: getFieldValue("customerName"),
-    nameColor: normalizeHex(getFieldValue("nameColor"), "#16253A"),
     customerEmail: getFieldValue("customerEmail"),
     linkedinUrl: getFieldValue("linkedinUrl"),
+    instagramUrl: getFieldValue("instagramUrl"),
     businessName: getFieldValue("businessName"),
     customerLocation: getFieldValue("customerLocation"),
     googleMapsUrl: getFieldValue("googleMapsUrl"),
+    googleReviewsUrl: getFieldValue("googleReviewsUrl"),
     additionalComments: getFieldValue("additionalComments"),
     logoFileName,
   };
-}
-
-// Lógica de actualización de la tarjeta
-function setPreviewCardColor(cardColor) {
-  if (!previewCard) return;
-  previewCard.style.background = `
-    linear-gradient(94deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 8px),
-    linear-gradient(4deg, rgba(20, 60, 90, 0.035) 0 1px, transparent 1px 10px),
-    linear-gradient(118deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 24%),
-    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.16) 0 1px, rgba(84, 93, 101, 0.035) 1px 3px),
-    linear-gradient(145deg, ${cardColor} 0%, ${cardColor} 100%)
-  `;
 }
 
 function setElementVisibility(element, isVisible) {
@@ -99,12 +82,8 @@ function setElementVisibility(element, isVisible) {
 function renderCardPreview({ isFinal = false } = {}) {
   const state = getFormState();
 
-  document.body.style.setProperty("--preview-page-bg", state.backgroundColor);
-  setPreviewCardColor(state.cardColor);
-
   if (previewName) {
     previewName.textContent = state.customerName || "Tu nombre";
-    previewName.style.color = state.nameColor;
   }
 
   if (previewEmail) {
@@ -113,8 +92,10 @@ function renderCardPreview({ isFinal = false } = {}) {
 
   const hasBusinessName = Boolean(state.businessName);
   const hasLinkedin = Boolean(state.linkedinUrl);
+  const hasInstagram = Boolean(state.instagramUrl);
   const hasLocation = Boolean(state.customerLocation);
   const hasGoogleMaps = Boolean(state.googleMapsUrl);
+  const hasGoogleReviews = Boolean(state.googleReviewsUrl);
 
   if (previewLocation) {
     previewLocation.textContent = state.customerLocation || "Madrid, España";
@@ -139,8 +120,16 @@ function renderCardPreview({ isFinal = false } = {}) {
     setElementVisibility(previewLinkedinAction, !isFinal || hasLinkedin);
   }
 
+  if (previewInstagramAction) {
+    setElementVisibility(previewInstagramAction, !isFinal || hasInstagram);
+  }
+
   if (previewGoogleMapsAction) {
     setElementVisibility(previewGoogleMapsAction, !isFinal || hasGoogleMaps);
+  }
+
+  if (previewGoogleReviewsAction) {
+    setElementVisibility(previewGoogleReviewsAction, !isFinal || hasGoogleReviews);
   }
 }
 
@@ -160,12 +149,11 @@ function buildFinalWhatsappMessage() {
     `Name: ${state.customerName || "-"}`,
     `Email: ${state.customerEmail || "-"}`,
     `LinkedIn: ${state.linkedinUrl || "No indicado"}`,
+    `Instagram: ${state.instagramUrl || "No indicado"}`,
     `Business name: ${state.businessName || "No indicado"}`,
     `Ubicación: ${state.customerLocation || "No indicado"}`,
-    `Google Maps reviews: ${state.googleMapsUrl || "No indicado"}`,
-    `Background color: ${state.backgroundColor}`,
-    `Card color: ${state.cardColor}`,
-    `Name color: ${state.nameColor}`,
+    `Google Maps: ${state.googleMapsUrl || "No indicado"}`,
+    `Reseñas de Google: ${state.googleReviewsUrl || "No indicado"}`,
     `Logo: ${state.logoFileName || "No adjuntado en el formulario"}`,
     "",
     `Comentarios adicionales: ${state.additionalComments || "Sin comentarios adicionales"}`,
@@ -181,7 +169,9 @@ function buildShareText() {
     state.customerLocation || "",
     state.customerEmail || "",
     state.linkedinUrl || "",
-    state.googleMapsUrl ? `Google Reviews: ${state.googleMapsUrl}` : "",
+    state.instagramUrl || "",
+    state.googleMapsUrl ? `Google Maps: ${state.googleMapsUrl}` : "",
+    state.googleReviewsUrl ? `Reseñas de Google: ${state.googleReviewsUrl}` : "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -231,33 +221,6 @@ if (logoDropzone) {
     handleLogoFile(event.dataTransfer?.files?.[0]);
   });
 }
-
-// Controles de color
-function syncColorText(colorInput) {
-  const textInput = document.querySelector(`[data-color-text="${colorInput.id}"]`);
-  if (textInput) textInput.value = colorInput.value.toUpperCase();
-}
-
-function syncColorInput(textInput) {
-  const colorInput = document.querySelector(`#${textInput.dataset.colorText}`);
-  const value = textInput.value.trim();
-
-  if (colorInput && /^#[0-9A-Fa-f]{6}$/.test(value)) {
-    colorInput.value = value;
-    resetFinalPreviewState();
-  }
-}
-
-document.querySelectorAll('input[type="color"]').forEach((input) => {
-  input.addEventListener("input", () => {
-    syncColorText(input);
-    resetFinalPreviewState();
-  });
-});
-
-document.querySelectorAll(".color-text").forEach((input) => {
-  input.addEventListener("input", () => syncColorInput(input));
-});
 
 Object.values(fields).forEach((field) => {
   field?.addEventListener("input", resetFinalPreviewState);

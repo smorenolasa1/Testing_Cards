@@ -248,34 +248,9 @@
                 <input id="customerEmail" name="customerEmail" type="email" placeholder="nombre@email.com" required />
               </label>
 
-              <label class="field" for="linkedinUrl">
-                <span>LinkedIn <em>opcional</em></span>
-                <input id="linkedinUrl" name="linkedinUrl" type="text" placeholder="https://linkedin.com/in/..." />
-              </label>
-
-              <label class="field" for="instagramUrl">
-                <span>Instagram <em>opcional</em></span>
-                <input id="instagramUrl" name="instagramUrl" type="text" placeholder="https://instagram.com/..." />
-              </label>
-
               <label class="field" for="businessName">
-                <span>Business name <em>opcional</em></span>
+                <span>Business name</span>
                 <input id="businessName" name="businessName" type="text" placeholder="Nombre de empresa o marca" />
-              </label>
-
-              <label class="field" for="customerLocation">
-                <span>Ubicación <em>opcional</em></span>
-                <input id="customerLocation" name="customerLocation" type="text" placeholder="Madrid, España" />
-              </label>
-
-              <label class="field" for="googleMapsUrl">
-                <span>Google Maps <em>opcional</em></span>
-                <input id="googleMapsUrl" name="googleMapsUrl" type="text" placeholder="Link a tu ubicación en Google Maps" />
-              </label>
-
-              <label class="field" for="googleReviewsUrl">
-                <span>Reseñas de Google <em>opcional</em></span>
-                <input id="googleReviewsUrl" name="googleReviewsUrl" type="text" placeholder="Link directo para ver o dejar una reseña" />
               </label>
             </div>
 
@@ -291,14 +266,77 @@
             </div>
 
             <label class="field comments-field" for="additionalComments">
-              <span>Comentarios adicionales</span>
+              <span>Información adicional</span>
               <textarea
                 id="additionalComments"
                 name="additionalComments"
-                rows="6"
-                placeholder="Explica cualquier información adicional, red social, imágenes, estilo, cambios concretos, referencias o detalles que quieras añadir o modificar de la tarjeta. Es totalmente personalizable."
+                rows="5"
+                placeholder="Añade cualquier comentario, detalle, cambio o información que quieras incluir."
               ></textarea>
             </label>
+
+            <div class="additional-fields-control" id="additionalFieldsControl">
+              <button
+                class="button button-secondary add-information-button"
+                id="addInformationButton"
+                type="button"
+                aria-expanded="false"
+                aria-controls="additionalFieldsMenu"
+              >
+                <span aria-hidden="true">+</span>
+                Añadir información
+              </button>
+              <div class="additional-fields-menu" id="additionalFieldsMenu" hidden>
+                <p>Elige la información que quieres añadir:</p>
+                <div class="additional-fields-options">
+                  <button type="button" data-add-field="instagramUrl">Instagram</button>
+                  <button type="button" data-add-field="linkedinUrl">LinkedIn</button>
+                  <button type="button" data-add-field="phoneNumber">Número de teléfono</button>
+                  <button type="button" data-add-field="customerLocation">Ubicación</button>
+                  <button type="button" data-add-field="googleMapsUrl">Google Maps</button>
+                  <button type="button" data-add-field="googleReviewsUrl">Reseñas de Google</button>
+                  <button type="button" data-add-field="otherLinkUrl">Otro enlace</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid optional-fields" id="optionalFields" aria-live="polite">
+              <div class="optional-field" data-optional-field="instagramUrl" hidden>
+                <label class="field" for="instagramUrl"><span>Instagram</span><input id="instagramUrl" name="instagramUrl" type="text" placeholder="https://instagram.com/..." /></label>
+                <button class="remove-field-button" type="button" data-remove-field="instagramUrl">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="linkedinUrl" hidden>
+                <label class="field" for="linkedinUrl"><span>LinkedIn</span><input id="linkedinUrl" name="linkedinUrl" type="text" placeholder="https://linkedin.com/in/..." /></label>
+                <button class="remove-field-button" type="button" data-remove-field="linkedinUrl">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="phoneNumber" hidden>
+                <label class="field" for="phoneNumber"><span>Número de teléfono</span><input id="phoneNumber" name="phoneNumber" type="tel" inputmode="tel" placeholder="+34 600 000 000" /></label>
+                <button class="remove-field-button" type="button" data-remove-field="phoneNumber">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="customerLocation" hidden>
+                <label class="field" for="customerLocation"><span>Ubicación</span><input id="customerLocation" name="customerLocation" type="text" placeholder="Madrid, España" /></label>
+                <button class="remove-field-button" type="button" data-remove-field="customerLocation">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="googleMapsUrl" hidden>
+                <label class="field" for="googleMapsUrl"><span>Google Maps</span><input id="googleMapsUrl" name="googleMapsUrl" type="text" placeholder="Link a tu ubicación en Google Maps" /></label>
+                <button class="remove-field-button" type="button" data-remove-field="googleMapsUrl">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="googleReviewsUrl" hidden>
+                <label class="field" for="googleReviewsUrl"><span>Reseñas de Google</span><input id="googleReviewsUrl" name="googleReviewsUrl" type="text" placeholder="Link directo para ver o dejar una reseña" /></label>
+                <button class="remove-field-button" type="button" data-remove-field="googleReviewsUrl">Quitar</button>
+              </div>
+
+              <div class="optional-field" data-optional-field="otherLinkUrl" hidden>
+                <label class="field" for="otherLinkUrl"><span>Otro enlace</span><input id="otherLinkUrl" name="otherLinkUrl" type="text" placeholder="https://tu-enlace.com" /></label>
+                <button class="remove-field-button" type="button" data-remove-field="otherLinkUrl">Quitar</button>
+              </div>
+
+            </div>
 
             <button class="button button-primary form-submit" type="submit">Enviar por WhatsApp</button>
           </form>
@@ -316,12 +354,11 @@
                   <h2 id="previewName">Tu nombre</h2>
                   <span id="previewBusiness">Tu marca</span>
                   <span id="previewEmail">nombre@email.com</span>
-                  <small id="previewLinkedin">LinkedIn opcional</small>
+                  <small id="previewLinkedin">LinkedIn</small>
                 </div>
                 <div class="card-actions">
                   <span>Guardar contacto</span>
-                  <span id="previewEmailAction">Email</span>
-                  <span id="previewLinkedinAction">LinkedIn</span>
+                  <span id="previewPhoneAction">Teléfono</span>
                   <span class="social-action" id="previewInstagramAction">
                     <svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true">
                       <defs>
@@ -349,6 +386,7 @@
                     </svg>
                     Google Maps
                   </span>
+                  <span id="previewOtherLinkAction">Otro enlace</span>
                 </div>
                 <button class="share-card-button" id="shareCardButton" type="button">
                   <span class="button-icon" aria-hidden="true">

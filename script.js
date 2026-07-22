@@ -26,16 +26,20 @@ const fields = {
   customerEmail: document.querySelector("#customerEmail"),
   linkedinUrl: document.querySelector("#linkedinUrl"),
   instagramUrl: document.querySelector("#instagramUrl"),
+  phoneNumber: document.querySelector("#phoneNumber"),
   businessName: document.querySelector("#businessName"),
   customerLocation: document.querySelector("#customerLocation"),
   googleMapsUrl: document.querySelector("#googleMapsUrl"),
   googleReviewsUrl: document.querySelector("#googleReviewsUrl"),
+  otherLinkUrl: document.querySelector("#otherLinkUrl"),
   additionalComments: document.querySelector("#additionalComments"),
 };
 
 const logoInput = document.querySelector("#logoUpload");
 const logoDropzone = document.querySelector("#logoDropzone");
 const logoStatus = document.querySelector("#logoStatus");
+const addInformationButton = document.querySelector("#addInformationButton");
+const additionalFieldsMenu = document.querySelector("#additionalFieldsMenu");
 
 // Referencias de la preview basada en card_example
 const previewName = document.querySelector("#previewName");
@@ -43,13 +47,13 @@ const previewEmail = document.querySelector("#previewEmail");
 const previewBusiness = document.querySelector("#previewBusiness");
 const previewLocation = document.querySelector("#previewLocation");
 const previewLinkedin = document.querySelector("#previewLinkedin");
+const previewPhoneAction = document.querySelector("#previewPhoneAction");
 const previewLogoWrap = document.querySelector("#previewLogoWrap");
 const previewLogo = document.querySelector("#previewLogo");
-const previewEmailAction = document.querySelector("#previewEmailAction");
-const previewLinkedinAction = document.querySelector("#previewLinkedinAction");
 const previewInstagramAction = document.querySelector("#previewInstagramAction");
 const previewGoogleMapsAction = document.querySelector("#previewGoogleMapsAction");
 const previewGoogleReviewsAction = document.querySelector("#previewGoogleReviewsAction");
+const previewOtherLinkAction = document.querySelector("#previewOtherLinkAction");
 const shareCardButton = document.querySelector("#shareCardButton");
 
 let logoFileName = "";
@@ -65,10 +69,12 @@ function getFormState() {
     customerEmail: getFieldValue("customerEmail"),
     linkedinUrl: getFieldValue("linkedinUrl"),
     instagramUrl: getFieldValue("instagramUrl"),
+    phoneNumber: getFieldValue("phoneNumber"),
     businessName: getFieldValue("businessName"),
     customerLocation: getFieldValue("customerLocation"),
     googleMapsUrl: getFieldValue("googleMapsUrl"),
     googleReviewsUrl: getFieldValue("googleReviewsUrl"),
+    otherLinkUrl: getFieldValue("otherLinkUrl"),
     additionalComments: getFieldValue("additionalComments"),
     logoFileName,
   };
@@ -77,6 +83,11 @@ function getFormState() {
 function setElementVisibility(element, isVisible) {
   if (!element) return;
   element.hidden = !isVisible;
+}
+
+function isOptionalFieldActive(fieldName) {
+  const fieldWrapper = document.querySelector(`[data-optional-field="${fieldName}"]`);
+  return Boolean(fieldWrapper && !fieldWrapper.hidden && !fieldWrapper.classList.contains("is-removing"));
 }
 
 function renderCardPreview({ isFinal = false } = {}) {
@@ -91,15 +102,17 @@ function renderCardPreview({ isFinal = false } = {}) {
   }
 
   const hasBusinessName = Boolean(state.businessName);
-  const hasLinkedin = Boolean(state.linkedinUrl);
-  const hasInstagram = Boolean(state.instagramUrl);
-  const hasLocation = Boolean(state.customerLocation);
-  const hasGoogleMaps = Boolean(state.googleMapsUrl);
-  const hasGoogleReviews = Boolean(state.googleReviewsUrl);
+  const hasLinkedin = isOptionalFieldActive("linkedinUrl");
+  const hasInstagram = isOptionalFieldActive("instagramUrl");
+  const hasPhoneNumber = isOptionalFieldActive("phoneNumber");
+  const hasLocation = isOptionalFieldActive("customerLocation");
+  const hasGoogleMaps = isOptionalFieldActive("googleMapsUrl");
+  const hasGoogleReviews = isOptionalFieldActive("googleReviewsUrl");
+  const hasOtherLink = isOptionalFieldActive("otherLinkUrl");
 
   if (previewLocation) {
     previewLocation.textContent = state.customerLocation || "Madrid, España";
-    setElementVisibility(previewLocation, !isFinal || hasLocation);
+    setElementVisibility(previewLocation, hasLocation);
   }
 
   if (previewBusiness) {
@@ -108,28 +121,30 @@ function renderCardPreview({ isFinal = false } = {}) {
   }
 
   if (previewLinkedin) {
-    previewLinkedin.textContent = state.linkedinUrl || "LinkedIn opcional";
-    setElementVisibility(previewLinkedin, !isFinal || hasLinkedin);
-  }
-
-  if (previewEmailAction) {
-    setElementVisibility(previewEmailAction, !isFinal || Boolean(state.customerEmail));
-  }
-
-  if (previewLinkedinAction) {
-    setElementVisibility(previewLinkedinAction, !isFinal || hasLinkedin);
+    previewLinkedin.textContent = state.linkedinUrl || "LinkedIn";
+    setElementVisibility(previewLinkedin, hasLinkedin);
   }
 
   if (previewInstagramAction) {
-    setElementVisibility(previewInstagramAction, !isFinal || hasInstagram);
+    setElementVisibility(previewInstagramAction, hasInstagram);
+  }
+
+  if (previewPhoneAction) {
+    previewPhoneAction.textContent = state.phoneNumber || "Teléfono";
+    setElementVisibility(previewPhoneAction, hasPhoneNumber);
   }
 
   if (previewGoogleMapsAction) {
-    setElementVisibility(previewGoogleMapsAction, !isFinal || hasGoogleMaps);
+    setElementVisibility(previewGoogleMapsAction, hasGoogleMaps);
   }
 
   if (previewGoogleReviewsAction) {
-    setElementVisibility(previewGoogleReviewsAction, !isFinal || hasGoogleReviews);
+    setElementVisibility(previewGoogleReviewsAction, hasGoogleReviews);
+  }
+
+  if (previewOtherLinkAction) {
+    previewOtherLinkAction.textContent = state.otherLinkUrl || "Otro enlace";
+    setElementVisibility(previewOtherLinkAction, hasOtherLink);
   }
 }
 
@@ -150,13 +165,14 @@ function buildFinalWhatsappMessage() {
     `Email: ${state.customerEmail || "-"}`,
     `LinkedIn: ${state.linkedinUrl || "No indicado"}`,
     `Instagram: ${state.instagramUrl || "No indicado"}`,
+    `Número de teléfono: ${state.phoneNumber || "No indicado"}`,
     `Business name: ${state.businessName || "No indicado"}`,
     `Ubicación: ${state.customerLocation || "No indicado"}`,
     `Google Maps: ${state.googleMapsUrl || "No indicado"}`,
     `Reseñas de Google: ${state.googleReviewsUrl || "No indicado"}`,
+    `Otro enlace: ${state.otherLinkUrl || "No indicado"}`,
     `Logo: ${state.logoFileName || "No adjuntado en el formulario"}`,
-    "",
-    `Comentarios adicionales: ${state.additionalComments || "Sin comentarios adicionales"}`,
+    `Información adicional: ${state.additionalComments || "No indicada"}`,
     "",
   ].join("\n");
 }
@@ -170,8 +186,11 @@ function buildShareText() {
     state.customerEmail || "",
     state.linkedinUrl || "",
     state.instagramUrl || "",
+    state.phoneNumber || "",
     state.googleMapsUrl ? `Google Maps: ${state.googleMapsUrl}` : "",
     state.googleReviewsUrl ? `Reseñas de Google: ${state.googleReviewsUrl}` : "",
+    state.otherLinkUrl || "",
+    state.additionalComments || "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -221,6 +240,51 @@ if (logoDropzone) {
     handleLogoFile(event.dataTransfer?.files?.[0]);
   });
 }
+
+if (addInformationButton && additionalFieldsMenu) {
+  addInformationButton.addEventListener("click", () => {
+    const willOpen = additionalFieldsMenu.hidden;
+    additionalFieldsMenu.hidden = !willOpen;
+    addInformationButton.setAttribute("aria-expanded", String(willOpen));
+  });
+}
+
+document.querySelectorAll("[data-add-field]").forEach((optionButton) => {
+  optionButton.addEventListener("click", () => {
+    const fieldName = optionButton.dataset.addField;
+    const fieldWrapper = document.querySelector(`[data-optional-field="${fieldName}"]`);
+    if (!fieldWrapper) return;
+
+    fieldWrapper.hidden = false;
+    fieldWrapper.classList.add("is-added");
+    optionButton.hidden = true;
+    additionalFieldsMenu.hidden = true;
+    addInformationButton?.setAttribute("aria-expanded", "false");
+    fields[fieldName]?.focus();
+    resetFinalPreviewState();
+
+    window.setTimeout(() => fieldWrapper.classList.remove("is-added"), 420);
+  });
+});
+
+document.querySelectorAll("[data-remove-field]").forEach((removeButton) => {
+  removeButton.addEventListener("click", () => {
+    const fieldName = removeButton.dataset.removeField;
+    const fieldWrapper = document.querySelector(`[data-optional-field="${fieldName}"]`);
+    const optionButton = document.querySelector(`[data-add-field="${fieldName}"]`);
+    if (!fieldWrapper) return;
+
+    if (fields[fieldName]) fields[fieldName].value = "";
+    fieldWrapper.classList.add("is-removing");
+    optionButton?.removeAttribute("hidden");
+    resetFinalPreviewState();
+
+    window.setTimeout(() => {
+      fieldWrapper.hidden = true;
+      fieldWrapper.classList.remove("is-removing");
+    }, 180);
+  });
+});
 
 Object.values(fields).forEach((field) => {
   field?.addEventListener("input", resetFinalPreviewState);

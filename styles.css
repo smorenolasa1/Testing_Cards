@@ -561,6 +561,111 @@ h1 {
   gap: 16px;
 }
 
+.additional-fields-control {
+  display: grid;
+  gap: 12px;
+}
+
+.add-information-button {
+  width: fit-content;
+  min-height: 46px;
+  cursor: pointer;
+}
+
+.add-information-button > span {
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.additional-fields-menu {
+  padding: 16px;
+  border: 1px solid rgba(20, 60, 90, 0.14);
+  border-radius: 8px;
+  background: rgba(247, 249, 251, 0.9);
+}
+
+.additional-fields-menu p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.additional-fields-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.additional-fields-options button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid rgba(20, 60, 90, 0.18);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--blue-deep);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.additional-fields-options button:disabled {
+  border-style: dashed;
+  color: var(--muted);
+  cursor: default;
+  opacity: 0.62;
+}
+
+.additional-fields-options small {
+  margin-left: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.optional-fields:empty {
+  display: none;
+}
+
+.optional-field {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 14px;
+  border: 1px solid rgba(20, 60, 90, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.optional-field-wide {
+  grid-column: 1 / -1;
+}
+
+.remove-field-button {
+  justify-self: end;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.optional-fields .is-added {
+  animation: revealField 400ms ease both;
+}
+
+.optional-fields .is-removing {
+  animation: removeField 180ms ease both;
+}
+
 .field {
   display: grid;
   gap: 8px;
@@ -1092,6 +1197,12 @@ h1 {
   .button-primary:hover {
     box-shadow: 0 22px 54px rgba(16, 34, 52, 0.28);
   }
+
+  .additional-fields-options button:not(:disabled):hover {
+    border-color: rgba(31, 118, 110, 0.48);
+    background: rgba(255, 255, 255, 0.96);
+    transform: translateY(-1px);
+  }
 }
 
 @keyframes floatCard {
@@ -1111,6 +1222,24 @@ h1 {
   }
   50% {
     translate: 0 4px;
+  }
+}
+
+@keyframes revealField {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes removeField {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
   }
 }
 
